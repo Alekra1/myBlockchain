@@ -23,3 +23,7 @@ go.work.sum
 
 # env file
 .env
+
+.idea/remote-targets.xml
+go.sum
+/fonts
