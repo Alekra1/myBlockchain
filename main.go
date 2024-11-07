@@ -3,7 +3,6 @@
 import (
 	"crypto/sha256"
 	"fmt"
-	"github.com/lukesampson/figlet/figletlib"
 	"time"
 )
 
@@ -19,9 +18,11 @@ type Blockchain struct {
 	Blocks []*Block
 }
 
-func (block *Block) generateBlock(Data string) {
+func (block *Block) createBlock(Data string, PreviousHash []byte, PreviousIndex int) {
+	block.Index = PreviousIndex + 1
 	block.TimeStamp = []byte(time.Now().Format(time.RFC3339))
-	block.generateHash(block.TimeStamp)
+	block.CurrentHash = block.generateHash(block.TimeStamp)
+	block.PreviousHash = PreviousHash
 	block.Data = []byte(Data)
 
 }
@@ -33,19 +34,14 @@ func (block *Block) generateHash(TimeStamp []byte) []byte {
 	return hashBytes
 }
 
-func Print(message string){
-	fontsDirectory := "/home/alekra1/myBlockChain/fonts"
-	f, err := figletlib.GetFontByName(fontsDirectory, "smslant")
-	if err != nil {
-		fmt.Println("Could not find that font!")
-		return
-	}
-	figletlib.PrintMsg(message, f, 80, f.Settings(), "left")
-}
-
 func main() {
-	block := new(Block)
-	block.CurrentHash = block.generateHash([]byte(time.Now().Format(time.RFC3339)))
-	Print("Here is your hash:")
-	fmt.Printf("%x", block.CurrentHash)
+	Print("Hi!")
+	block0 := new(Block)
+	block1 := new(Block)
+	fmt.Println(block0)
+	fmt.Println(block1)
+	blocks := []*Block{block0, block1}
+	blockchain := Blockchain{blocks}
+	//blockchain = append(*blockchain, &block0, &block1)
+	fmt.Println(blockchain)
 }
