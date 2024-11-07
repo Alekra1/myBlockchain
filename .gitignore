@@ -26,4 +26,6 @@ go.work.sum
 
 .idea/remote-targets.xml
 go.sum
-/fonts
+#if fonts will not be needed uncomment next line
+#/fonts
+
