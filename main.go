@@ -36,12 +36,10 @@ func (block *Block) generateHash(TimeStamp []byte) []byte {
 
 func main() {
 	Print("Hi!")
-	block0 := new(Block)
-	block1 := new(Block)
-	fmt.Println(block0)
-	fmt.Println(block1)
-	blocks := []*Block{block0, block1}
-	blockchain := Blockchain{blocks}
+	var blockchain Blockchain
+	for i := 0; i < 10; i++ {
+		blockchain.Blocks = append(blockchain.Blocks, new(Block))
+	}
 	//blockchain = append(*blockchain, &block0, &block1)
 	fmt.Println(blockchain)
 }
